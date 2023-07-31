@@ -10,7 +10,7 @@ public class Quiz03 {
 		int random = ran.nextInt(10)+1;
 		
 		System.out.print("È¦ Â¦ À» ÀÔ·ÂÇÏ¼¼¿ä : ");
-		String answer = in.next();
+		String answer = in.nextLine();
 		
 		oddOrEven(answer, random);
 		

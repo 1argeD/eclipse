@@ -8,7 +8,7 @@ public class MethodTest {
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("원하는 계산을 선택해주세요((ex)더하기, 곱하기, 나누기) : ");
-		String want = in.next();
+		String want = in.nextLine();
 		
 		System.out.print("a를 입력해주세요 : ");
 		int a = sc.nextInt();

@@ -8,7 +8,7 @@ public class Quiz03 {
 		
 		System.out.println(myRandom());
 			//자바는 메소드 파라미터의 타입과 개수를 가지고 구분할 수 있다.- 메소드가 구분 가능시 동일 이름 허용
-			//메소드오버로딩(method ov erloading)
+			//메소드오버로딩(method overloading)
 	}
 	
 	private static int myRandom() {

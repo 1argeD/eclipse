@@ -17,7 +17,7 @@ public class Quiz04 {
 		Scanner in = new Scanner(System.in);
 		
 		System.out.print("성별을 입력해주세요 : ");
-		String gender = in.next();
+		String gender = in.nextLine();
 		
 		System.out.print("신장을 입력하세요 : ");
 		int height = in.nextInt();

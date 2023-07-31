@@ -32,10 +32,8 @@ public class Quiz03 {
 				}
 			}
 			
-			System.out.println(
-					"주사위 "+j+"는 총 " +cnt+"번 만큼 나왔으며, "
-					+ ""+"확률은 "+ ((double)cnt/throwDice*100)+"%입니다."
-					);
+			System.out.println("주사위 "+j+"는 총 " +cnt+"번 만큼 나왔으며, "
+					+ ""+"확률은 "+ ((double)cnt/throwDice*100)+"%입니다.");
 		
 		}
 		
