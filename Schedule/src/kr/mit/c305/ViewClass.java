@@ -11,8 +11,17 @@ public class ViewClass implements InterViewClass{
 
 	@Override
 	public int menu() {
-		System.out.print("1.전체 일정 보기\n2.일정 입력\n3.일정 완료하기\n4.종료\nmenu입력: ");
-		return sc.nextInt();
+		int menuNum = 0;
+		do {
+			try {
+				System.out.print("1.전체 일정 보기\n2.일정 입력\n3.일정 완료하기\n4.날짜 계산하기\n5.종료\nmenu입력: ");
+				menuNum=sc.nextInt();
+			} catch(Exception e) {
+				sc.nextLine();
+				System.out.println("*메뉴의 숫자만 입력해주세요.*");
+			}
+		}while(menuNum!=1&&menuNum!=2&&menuNum!=3&&menuNum!=4&&menuNum!=5);
+	return menuNum;
 	}
 
 	@Override
