@@ -10,6 +10,8 @@ interface P {
 
 public class Lambda2Demo {
 	public static void main(String[] args) {
+		
+		//자바에서 람다식은 함수형 인터페이스를 구현한 익명객체이다.
 		N n;
 		
 		n = (int x) -> {return -x;};//기본표기법
@@ -22,6 +24,7 @@ public class Lambda2Demo {
 		/*void print() {
 			System.out.println("안녕");
 		}*/
+		
 		P p;
 		 p = () -> {System.out.println("안녕");};
 		 p = () -> System.out.println("안녕");
