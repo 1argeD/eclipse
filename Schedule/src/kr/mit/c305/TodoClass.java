@@ -1,16 +1,18 @@
 package kr.mit.c305;
 
 
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class TodoClass implements InterTodoClass{
 	Scanner sc = new Scanner(System.in);
 
-	SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	String date = format.format(new Date());
 	String state="미완료";
 	String work,yesOrNo;
@@ -19,7 +21,7 @@ public class TodoClass implements InterTodoClass{
 	
 	boolean comOrIncom;
 	
-	ArrayList<TodoClass> todoList = new ArrayList<>();
+	List<TodoClass> todoList = new ArrayList<>();
 	
 	TodoClass(String date, String work, boolean comOrIncom) {
 		this.date = date;
@@ -33,6 +35,9 @@ public class TodoClass implements InterTodoClass{
 	
 	@Override
 	public void todoList() {
+		InterDBClass db = new DBClass();
+		todoList = db.list();
+		
 		if(todoList.size()==0) {
 			System.out.println("*일정이 비어있습니다. 일정을 입력해주세요.*");
 		}
@@ -62,7 +67,10 @@ public class TodoClass implements InterTodoClass{
 			}while(!yesOrNo.equals("y")&&!yesOrNo.equals("n"));
 		}
 		comOrIncom=false;
-		todoList.add(new TodoClass(date, work,comOrIncom));
+//		todoList.add(new TodoClass(date, work,comOrIncom));
+		InterDBClass db = new DBClass();
+		db.input(new TodoClass(date, work,comOrIncom));
+		
 		return yesOrNo;
 		
 	}
