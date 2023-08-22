@@ -1,7 +1,5 @@
 package kr.mit.c305;
 
-
-import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,9 +14,16 @@ public class TodoClass implements InterTodoClass{
 	String date = format.format(new Date());
 	String state="미완료";
 	String work,yesOrNo;
+	int no;
 	
 	int n;
 	
+	@Override
+	public String toString() {
+		return "TodoClass [date=" + date + ", state=" + state + ", work=" + work + ", no=" + no + ", comOrIncom=" + comOrIncom +"]";
+	}
+
+
 	boolean comOrIncom;
 	
 	List<TodoClass> todoList = new ArrayList<>();
@@ -36,14 +41,14 @@ public class TodoClass implements InterTodoClass{
 	@Override
 	public void todoList() {
 		InterDBClass db = new DBClass();
-		todoList = db.list();
+		List<TodoClass> list = db.list();
 		
-		if(todoList.size()==0) {
+		if(list.size()==0) {
 			System.out.println("*일정이 비어있습니다. 일정을 입력해주세요.*");
 		}
-		for(TodoClass todo : todoList) {
+		for(TodoClass todo : list) {
 			state = todo.comOrIncom ? "완료" : "미완료"; 
-			System.out.println(todo.date+", " + todo.work+" -" +state);
+			System.out.println(todo.no+", "+todo.date+", " + todo.work+" -" +state);
 			
 		}
 	
@@ -77,7 +82,10 @@ public class TodoClass implements InterTodoClass{
 
 	@Override
 	public int incompleteList() {
-			if(todoList.size()==0) {
+		InterDBClass db = new DBClass();
+		List<TodoClass> list = db.incompleteList();
+		
+		if(list.size()==0) {
 				System.out.println("*일정이 비어있습니다. 일정을 입력해주세요.*");
 				System.out.print("몇번 일정을 완료하시겠습니까or종료(0) ?");
 				try{
@@ -88,12 +96,16 @@ public class TodoClass implements InterTodoClass{
 				}
 				return n;
 			}
-			for(int i=0; i<todoList.size(); i++) {
-				if(todoList.get(i).comOrIncom!=true) {
-					state = todoList.get(i).comOrIncom ? "완료" : "미완료";
-					System.out.println((i+1)+"."+todoList.get(i).date+ " "  + todoList.get(i).work+ " " + "-"+state);
+			
+			
+			for(TodoClass todo : list) {
+				if(todo.comOrIncom!=true) {
+					state = todo.comOrIncom ? "완료" : "미완료";
+					System.out.println(todo.no+"."+todo.date+ " "  + todo.work+ " " + "-"+state);
 				} 
 			}
+			
+
 			
 				try{
 					System.out.print("몇번 일정을 완료하시겠습니까or종료(0) ?");
@@ -103,7 +115,7 @@ public class TodoClass implements InterTodoClass{
 					System.out.println("0번 혹 일정의 번호를 입력해주세요.");
 				}
 			
-			if(n<0||n>todoList.size()) {
+			if(n<0||n>list.size()) {
 				System.out.println("*올바른 숫자를 입력해주세요.*");
 			}
 
